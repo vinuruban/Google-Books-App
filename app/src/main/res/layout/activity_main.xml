@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:ems="10"
-        android:hint="@string/edit_message"
-        android:inputType="textPersonName"/>
-
-    <Button
-        android:layout_alignParentRight="true"
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/button_send"/>
-
-    <ListView
-        android:id="@+id/list"
-        android:orientation="vertical"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:layout_height="75dp"
+        android:orientation="horizontal">
 
-    <!-- Empty view is only visible when the list has no items. -->
-    <TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ems="10"
+            android:hint="@string/edit_message"
+            android:inputType="textPersonName"/>
 
-    <!-- Loading indicator is only shown before the first load -->
-    <ProgressBar
-        android:id="@+id/loading_indicator"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        <Button
+            android:layout_gravity="center_vertical"
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/button_send"/>
+    </LinearLayout>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <ListView
+            android:id="@+id/list"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"/>
+
+        <!-- Empty view is only visible when the list has no items. -->
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+        <!-- Loading indicator is only shown before the first load -->
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</LinearLayout>
