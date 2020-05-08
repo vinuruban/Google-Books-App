@@ -1,14 +1,16 @@
 package com.example.googlebooks;
 
+import android.graphics.Bitmap;
+
 public class BookObject {
 
-    private String thumbnail;
+    private Bitmap thumbnail;
     private String title;
     private String description;
     private String authors;
     private String publishedDate;
 
-    public BookObject(String thumbnail, String title, String description, String authors, String publishedDate) {
+    public BookObject(Bitmap thumbnail, String title, String description, String authors, String publishedDate) {
         this.thumbnail = thumbnail;
         this.title = title;
         this.description = description;
@@ -16,7 +18,7 @@ public class BookObject {
         this.publishedDate = publishedDate;
     }
 
-    public String getThumbnail() {
+    public Bitmap getThumbnail() {
         return thumbnail;
     }
 

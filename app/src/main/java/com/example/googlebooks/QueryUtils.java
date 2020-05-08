@@ -1,5 +1,7 @@
 package com.example.googlebooks;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -20,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class QueryUtils {
 
@@ -169,9 +172,9 @@ public class QueryUtils {
 
             // Getting JSON Array node
             JSONArray bookArray = jsonObj.getJSONArray("items");
-
             // looping through All bookArray
             for (int i = 0; i < bookArray.length(); i++) {
+
                 JSONObject currentBook = bookArray.getJSONObject(i);
                 JSONObject volumeInfoObj = currentBook.getJSONObject("volumeInfo");
 
@@ -180,12 +183,20 @@ public class QueryUtils {
                 String description = volumeInfoObj.getString("description");
 
                 JSONArray authorsArray = volumeInfoObj.getJSONArray("authors");
-                String authors = authorsArray.toString();
+                String authorsToString = authorsArray.toString();
+                String authors = authorsToString.replaceAll("\",\"", ", ").replaceAll(Pattern.quote("["), "").replaceAll("\"", "").replaceAll(Pattern.quote("]"), "");
 
                 String publishedDate = volumeInfoObj.getString("publishedDate");
 
                 JSONObject imageLinksObj = volumeInfoObj.getJSONObject("imageLinks");
-                String thumbnail = imageLinksObj.getString("smallThumbnail");
+                String thumbnailUrl = imageLinksObj.getString("thumbnail");
+                Bitmap thumbnail = null;
+                try {
+                    InputStream in = new java.net.URL(thumbnailUrl).openStream();
+                    thumbnail = BitmapFactory.decodeStream(in);
+                } catch (IOException e) {
+                    Log.e(LOG_TAG, "Error: " + e.getMessage());
+                }
 
                 books.add(new BookObject(thumbnail, title, description, authors, publishedDate));
                 }

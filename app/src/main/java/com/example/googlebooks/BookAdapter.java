@@ -36,13 +36,7 @@ public class BookAdapter extends ArrayAdapter<BookObject> {
         ImageView thumbnail = (ImageView) listItemView.findViewById(R.id.tb_imageView);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
-        InputStream in = null;
-        try {
-            in = new java.net.URL(currentBook.getThumbnail()).openStream();
-        } catch (IOException e) {
-            Log.e("BookAdapter", "testtttttttttt: " + e.getMessage());
-        }
-        thumbnail.setImageBitmap(BitmapFactory.decodeStream(in));
+        thumbnail.setImageBitmap(currentBook.getThumbnail());
 
         TextView title = (TextView) listItemView.findViewById(R.id.title_textView);
         // Get the version name from the current AndroidFlavor object and
